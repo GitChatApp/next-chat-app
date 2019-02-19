@@ -5,8 +5,8 @@ import Link from 'next/link'
 class Error extends React.Component {
   static getInitialProps({ req, query }) {
     return {
-      code: query.code,
-      message: query.message
+      code: query.code || 404,
+      message: query.message || 'Not Found'
     }
   }
 
