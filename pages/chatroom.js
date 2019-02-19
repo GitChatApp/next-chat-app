@@ -15,9 +15,15 @@ class Chatroom extends React.Component {
     }
   }
 
+  static getInitialProps({req, query}) {
+    return {
+      username: query.username
+    }
+  }
+
   componentDidMount() {
     this.socket = io()
-    this.socket.emit('add user', 'user')
+    this.socket.emit('add user', this.props.username)
     this.socket.on('chat message', this.handleMessage)
     this.socket.on('user list', this.handleList)
   }

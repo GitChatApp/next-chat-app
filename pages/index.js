@@ -1,6 +1,9 @@
 import Head from 'next/head'
 import Link from 'next/link'
 
+import getConfig from 'next/config'
+const {publicRuntimeConfig} = getConfig()
+
 const Index = () => (
   <div>
     <Head>
@@ -9,8 +12,8 @@ const Index = () => (
       <link rel="icon" type="image/png" href="static/favicon.png" />
     </Head>
     <img src="static/gitchatapp.png" alt="Git Chat App" />
-    <Link href="/chatroom">
-      <a>Chat Room</a>
+    <Link href={`https://github.com/login/oauth/authorize?client_id=${publicRuntimeConfig.client_id}`}>
+      <a>Login With GitHub</a>
     </Link>
     <style jsx>{`
       div {
