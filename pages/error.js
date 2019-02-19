@@ -39,7 +39,7 @@ class Error extends React.Component {
             margin: 0 auto;
           }
           a {
-            color: rgb(65, 210, 145);
+            color: rgb(70, 190, 255);
             font-size: 20px;
           }
         `}</style>

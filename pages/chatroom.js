@@ -99,7 +99,7 @@ class Chatroom extends React.Component {
         </form>
         <style jsx>{`
           .chatroom {
-            background-color: rgb(65, 210, 145);
+            background-color: rgb(70, 190, 255);
             border-radius: 5px;
             display: grid;
             margin: 20px auto;
@@ -162,7 +162,7 @@ class Chatroom extends React.Component {
             padding: 10px;
           }
           .chatroom .border {
-            border-right: 10px solid rgb(65, 210, 145);
+            border-right: 10px solid rgb(70, 190, 255);
           }
           .chatroom .messages {
             list-style-type: none;
