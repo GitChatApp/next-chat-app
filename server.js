@@ -7,6 +7,7 @@ const next = require('next')
 const dev = process.env.NODE_ENV !== 'production'
 const nextApp = next({ dev })
 const nextHandle = nextApp.getRequestHandler()
+const oauth = require('./oauth.js')
 
 let users = [];
 
@@ -33,8 +34,22 @@ io.on('connection', (socket) => {
 })
 
 nextApp.prepare().then(() => {
+  app.get('/chatroom', (req, res, next) => {
+    oauth.authorize(req.query.code)
+      .then((username) => {
+        nextApp.render(req, res, '/chatroom', { username })
+      })
+      .catch(next)
+  })
+
   app.get('*', (req, res) => {
     return nextHandle(req, res)
+  })
+
+  app.use((err, req, res, next) => {
+    let code = err.status || 500
+    let message = err.message || 'Server Error'
+    nextApp.render(req, res, '/error', { code, message })
   })
 
   server.listen(3000, (err) => {
