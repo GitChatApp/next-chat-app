@@ -5,6 +5,7 @@ const io = require('socket.io')(server)
 
 const next = require('next')
 const dev = process.env.NODE_ENV !== 'production'
+const port = process.env.PORT || 3000;
 const nextApp = next({ dev })
 const nextHandle = nextApp.getRequestHandler()
 const oauth = require('./oauth.js')
@@ -52,9 +53,9 @@ nextApp.prepare().then(() => {
     nextApp.render(req, res, '/error', { code, message })
   })
 
-  server.listen(process.env.PORT || 3000, (err) => {
+  server.listen(port, (err) => {
     if (err) throw err
-    console.log(`> Ready on ${process.env.port || 3000}`)
+    console.log(`> Ready on ${port}`)
   })
 })
 .catch((ex) => {
