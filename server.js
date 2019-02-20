@@ -52,9 +52,9 @@ nextApp.prepare().then(() => {
     nextApp.render(req, res, '/error', { code, message })
   })
 
-  server.listen(3000, (err) => {
+  server.listen(process.env.PORT || 3000, (err) => {
     if (err) throw err
-    console.log('> Ready on http://localhost:3000')
+    console.log(`> Ready on ${process.env.port || 3000}`)
   })
 })
 .catch((ex) => {
